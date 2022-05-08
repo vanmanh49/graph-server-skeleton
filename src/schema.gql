@@ -1,0 +1,50 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+interface CommonFields {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input CreateProductInput {
+  name: String!
+  price: Float!
+  priceUnit: Price!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createProduct(createProductInput: CreateProductInput!): Product!
+  removeProduct(id: Int!): Boolean!
+  updateProduct(id: Int!, updateProductInput: UpdateProductInput!): Product!
+}
+
+enum Price {
+  DOLLA
+  VIETNAM_DONG
+}
+
+type Product implements CommonFields {
+  createdAt: DateTime!
+  id: Int!
+  name: String!
+  price: Float!
+  priceUnit: Price!
+  updatedAt: DateTime!
+}
+
+type Query {
+  product(id: Int!): Product
+  products: [Product!]
+}
+
+input UpdateProductInput {
+  name: String
+  price: Float
+  priceUnit: Price
+}
